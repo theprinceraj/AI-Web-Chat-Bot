@@ -11,9 +11,9 @@ async function getResponse() {
   }
 
   const question = document.createElement('div');
-question.innerHTML = inputText;
-question.classList.add("box");
-parentDiv.appendChild(question);
+  question.innerHTML = inputText;
+  question.classList.add("box");
+  parentDiv.appendChild(question);
   
   document.getElementByID('input').value = '';
 
@@ -26,10 +26,9 @@ parentDiv.appendChild(question);
     body: JSON.stringify({
       question: inputText          
     })
-  }
-)
+  });
     
-const data = await res.json();
+  const data = await res.json();
 
   if(data.message) {
   const answer = document.createElement('div')
