@@ -3,7 +3,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -13,21 +14,21 @@ html, body {
   margin: 0 auto;
   width: 80%;
   height: 500px;
-  overflow:scroll;
+  overflow: scroll;
   border: 1px solid gray;
   border-radius: 4px;
 }
 
-.input {            
+.input {
   width: 100%;
 }
 
-.submit-area{
+.submit-area {
   justify-content: center;
   display: flex;
   margin: 20px auto;
-  width: 80%;            
-}       
+  width: 80%;
+}
 
 textarea {
   width: 100%;
@@ -38,7 +39,7 @@ textarea {
   margin: 0 auto;
   padding: 10px 10px;
   background-color: #C4DBFE;
-  margin: 10px auto;            
+  margin: 10px auto;
 }
 
 .answer {
