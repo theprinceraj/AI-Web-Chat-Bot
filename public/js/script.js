@@ -9,5 +9,12 @@ async function getResponse() {
   if(inputText === '') { 
     return;
   }
+
+  const question = document.createElement('div');
+question.innerHTML = inputText;
+question.classList.add("box");
+parentDiv.appendChild(question);
+  
+  document.getElementByID('input').value = '';
   // The remaining code goes inside this function
 }
