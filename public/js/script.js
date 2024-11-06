@@ -1,40 +1,55 @@
-const btn = document.getElementByID('btn');
+const chatArea = document.getElementById("chat-area");
 
-btn.addEventListener('click', getResponse);
+const form = document.querySelector("form");
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await getResponse();
+});
 
 async function getResponse() {
-  var inputText = document.getElementById("input").value;
-  const parentDiv = document.getElementById("chat-area");
+    const inputText = document.querySelector("#input").value;
+    alert(inputText);
+    if (inputText === "") {
+        alert("Please enter a message before sending.");
+        return;
+    }
 
-  if (inputText === '') {
-    return;
-  }
+    const question = document.createElement("div");
+    const textDiv = document.createElement("div");
+    textDiv.innerText = inputText;
+    textDiv.style.overflowY = "auto";
+    textDiv.style.overflowX = "hidden";
+    question.appendChild(textDiv);
+    question.classList.add("box", "user");
+    chatArea.appendChild(question);
 
-  const question = document.createElement('div');
-  question.innerHTML = inputText;
-  question.classList.add("box");
-  parentDiv.appendChild(question);
+    document.getElementById("input").value = "";
 
-  document.getElementByID('input').value = '';
+    let res = await fetch("/chat",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                question: inputText,
+            }),
+        });
 
-  let res = await fetch('http://localhost:5000/chat',
-    {
-      method: 'POST',
-      headers: {
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify({
-        question: inputText
-      })
-    });
+    const data = await res.json();
 
-  const data = await res.json();
+    if (data.message) {
+        const answer = document.createElement("div");
+        const textDiv = document.createElement("div");
+        textDiv.innerText = data.message;
+        answer.appendChild(textDiv);
+        answer.classList.add("box", "answer");
+        chatArea.appendChild(answer);
+    }
+    // The remaining code goes inside this function
+    scrollChatAreaToBottom();
+}
 
-  if (data.message) {
-    const answer = document.createElement('div')
-    answer.innerHTML = data.message
-    answer.classList.add("box", "answer")
-    parentDiv.appendChild(answer)
-  }
-  // The remaining code goes inside this function
+function scrollChatAreaToBottom() {
+    chatArea.scrollTop = chatArea.scrollHeight;
 }
