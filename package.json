@@ -1,0 +1,16 @@
+{
+  "name": "ai-web-chat-bot",
+  "version": "1.0.0",
+  "description": "A nice interface to chat with your very own AI bot using Open AI API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
